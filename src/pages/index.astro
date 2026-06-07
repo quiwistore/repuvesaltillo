@@ -1,0 +1,569 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, oficinas, getOficinaCapital, pagesCentrales } from '../data/datos.js';
+
+const capital = getOficinaCapital();
+const description = `Consulta REPUVE Saltillo: verifica placas, NIV y reporte de robo gratis. Oficinas en Saltillo (capital de Coahuila), Ramos Arizpe, Arteaga. Trámites, citas, requisitos 2026.`;
+
+// Schema Organization
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "REPUVE Saltillo (sitio informativo)",
+  "url": `https://${site.domain}`,
+  "telephone": site.phone_repuve,
+  "areaServed": {
+    "@type": "State",
+    "name": "Saltillo",
+    "containedInPlace": { "@type": "Country", "name": "México" }
+  }
+};
+
+// ItemList schema con las oficinas
+const officesListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Oficinas REPUVE en Saltillo",
+  "itemListElement": oficinas.map((o, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": `REPUVE ${o.ciudad}`,
+    "url": `https://${site.domain}/oficinas/${o.slug}/`
+  }))
+};
+
+// FAQs de home
+const faqs = [
+  { q: "¿Cómo consulto el REPUVE en Saltillo gratis?", a: "Puedes consultar el REPUVE gratis en línea ingresando el número de placa o NIV en el portal oficial repuve.gob.mx, o llamando al 800 737 8831. La consulta es 100% gratuita y disponible las 24 horas." },
+  { q: "¿Dónde están las oficinas REPUVE en Saltillo?", a: "Hay oficinas en Saltillo (Carretera a Torreón Km. 25), Saltillo (Lib. Óscar Flores Tapia Km 1.5), Ramos Arizpe, Arteaga y General Cepeda. Consulta horarios y ubicaciones específicas." },
+  { q: "¿El REPUVE es obligatorio para autos y motos en Saltillo?", a: "Sí, la inscripción en el REPUVE es obligatoria para todos los vehículos automotores que circulan en México, incluyendo Saltillo, según la Ley del Registro Público Vehicular." },
+  { q: "¿Cuánto cuesta inscribir mi auto en el REPUVE Saltillo?", a: "La inscripción al REPUVE es gratuita. Los costos relacionados son de Control Vehicular del estado (placas, refrendo, tenencia). La regularización de autos chocolate cuesta $2,500 MXN." },
+  { q: "¿Cómo agendo una cita en el REPUVE Saltillo?", a: "Puedes agendar tu cita en línea en regularizaauto.sspc.gob.mx (para regularización) o directamente en la oficina REPUVE de tu localidad. También puedes llamar al 800 737 8831." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<Base
+  title="REPUVE Saltillo 2026 — Consulta de Placas, NIV y Reporte de Robo"
+  description={description}
+  schema={[orgSchema, officesListSchema, faqSchema]}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-meta">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        Sitio informativo de Saltillo, Coahuila
+      </span>
+      <h1>REPUVE Saltillo: Consulta de Placas, NIV y Reporte de Robo</h1>
+      <p class="hero-subtitle">
+        Verifica el estatus legal de cualquier vehículo en Saltillo de forma <strong>gratuita</strong>.
+        Encuentra oficinas, horarios, requisitos, costos y trámites del Registro Público Vehicular en toda la entidad.
+      </p>
+      <div class="hero-buttons">
+        <a href="#consultar" class="btn btn-white"><i class="fa-solid fa-magnifying-glass"></i> Consultar ahora</a>
+        <a href="/agendar-cita/" class="btn btn-secondary" style="color:white;border-color:white"><i class="fa-solid fa-calendar-check"></i> Agendar cita</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANZADOR DE CONSULTA (distribuye tráfico a páginas internas, no form directo) -->
+  <section class="section section-bg-alt" id="consultar" style="padding-top: var(--space-7); padding-bottom: var(--space-7)">
+    <div class="container">
+      <div class="consulta-launcher">
+        <div class="consulta-launcher-header">
+          <span class="consulta-launcher-badge">
+            <i class="fa-solid fa-shield-halved"></i> Consulta segura y gratuita
+          </span>
+          <h2 class="consulta-launcher-title">Consultá el REPUVE de tu vehículo en 2 minutos</h2>
+          <p class="consulta-launcher-subtitle">
+            Verificá el estatus legal de cualquier vehículo en Saltillo: reporte de robo, datos oficiales, historial.
+            Elegí cómo querés consultar:
+          </p>
+        </div>
+
+        <div class="consulta-launcher-options">
+          <a href="/consulta-por-placa/" class="consulta-launcher-option">
+            <div class="option-icon">
+              <i class="fa-solid fa-square"></i>
+            </div>
+            <div class="option-body">
+              <div class="option-title">Consultar por <strong>placa</strong></div>
+              <div class="option-desc">El dato más fácil de obtener. 5 a 7 caracteres alfanuméricos.</div>
+              <div class="option-cta">
+                Empezar consulta <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="/consulta-por-niv/" class="consulta-launcher-option">
+            <div class="option-icon">
+              <i class="fa-solid fa-barcode"></i>
+            </div>
+            <div class="option-body">
+              <div class="option-title">Consultar por <strong>NIV / VIN</strong></div>
+              <div class="option-desc">Verificación más confiable. 17 caracteres únicos del vehículo.</div>
+              <div class="option-cta">
+                Empezar consulta <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="consulta-launcher-features">
+          <span><i class="fa-solid fa-check"></i> 100% gratuito</span>
+          <span><i class="fa-solid fa-check"></i> Sin registro</span>
+          <span><i class="fa-solid fa-check"></i> Datos oficiales REPUVE</span>
+          <span><i class="fa-solid fa-check"></i> 2 minutos</span>
+        </div>
+
+        <p class="consulta-launcher-help">
+          ¿No sabés qué dato usar? <a href="/consulta-ciudadana/">Lee la guía completa de la consulta ciudadana</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO CARDS (3 servicios principales) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">¿Qué necesitas hacer en el REPUVE?</h2>
+      <p class="section-subtitle">Las consultas y trámites más comunes en Saltillo, paso a paso.</p>
+
+      <div class="info-cards-grid">
+        <div class="info-card">
+          <div class="icon-wrap"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h3>Consultar un vehículo</h3>
+          <p>Verifica si un auto o moto tiene reporte de robo, adeudos o restricciones legales antes de comprarlo.</p>
+          <a href="/consulta-ciudadana/" class="btn btn-primary">Iniciar consulta</a>
+        </div>
+        <div class="info-card">
+          <div class="icon-wrap"><i class="fa-solid fa-calendar-check"></i></div>
+          <h3>Agendar una cita</h3>
+          <p>Reserva tu turno en línea para trámites presenciales: inscripción, chip, regularización de autos chocolate.</p>
+          <a href="/agendar-cita/" class="btn btn-primary">Agendar</a>
+        </div>
+        <div class="info-card">
+          <div class="icon-wrap"><i class="fa-solid fa-file-shield"></i></div>
+          <h3>Reportar un robo</h3>
+          <p>Pasos completos si te robaron el auto en Saltillo: denuncia, REPUVE y aseguradora.</p>
+          <a href="/auto-robado/" class="btn btn-primary">Ver pasos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFICINAS POR CIUDAD -->
+  <section class="section section-bg-alt">
+    <div class="container">
+      <h2 class="section-title">Oficinas REPUVE en Saltillo</h2>
+      <p class="section-subtitle">Direcciones, horarios y servicios disponibles en cada municipio.</p>
+
+      <div class="cities-grid">
+        {oficinas.map(o => (
+          <a href={`/oficinas/${o.slug}/`} class="city-card">
+            <span class="city-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            <span class="city-eyebrow">
+              {o.es_capital ? 'Capital del estado' : (o.es_frontera ? 'Frontera' : 'Municipio')}
+            </span>
+            <span class="city-name">{o.ciudad}</span>
+            <span class="city-population">{o.poblacion} habitantes</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS / TRÁMITES -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Trámites más solicitados en Saltillo</h2>
+      <p class="section-subtitle">Todo lo que puedes hacer en el REPUVE y Control Vehicular.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-header">
+            <i class="fa-solid fa-car"></i>
+            <h3>Inscripción al REPUVE</h3>
+          </div>
+          <p>Registra tu vehículo nuevo o usado en el Registro Público Vehicular Nacional.</p>
+          <ul>
+            <li>Auto particular o moto</li>
+            <li>Documentos requeridos</li>
+            <li>Trámite presencial con cita</li>
+          </ul>
+          <a href="/inscribir-vehiculo/" class="btn btn-secondary">Ver detalles</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-header">
+            <i class="fa-solid fa-passport"></i>
+            <h3>Regularización de autos chocolate</h3>
+          </div>
+          <p>Trámite federal para autos de procedencia extranjera. Especialmente común en Saltillo.</p>
+          <ul>
+            <li>$2,500 MXN costo único</li>
+            <li>Decreto vigente hasta 19/oct/2021</li>
+            <li>Módulos itinerantes en Saltillo</li>
+          </ul>
+          <a href="/regularizacion-autos-chocolate/" class="btn btn-secondary">Ver guía</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-header">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>Chip REPUVE</h3>
+          </div>
+          <p>Identificador electrónico que se coloca en tu parabrisas. Instalación gratuita.</p>
+          <ul>
+            <li>Sin costo</li>
+            <li>Instalado en oficina REPUVE</li>
+            <li>Tecnología RFID pasiva</li>
+          </ul>
+          <a href="/chip-repuve/" class="btn btn-secondary">Más información</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-header">
+            <i class="fa-solid fa-id-card"></i>
+            <h3>Cambio de propietario</h3>
+          </div>
+          <p>Trámite imprescindible al comprar o vender un auto usado en Saltillo.</p>
+          <ul>
+            <li>30 días para realizarlo tras venta</li>
+            <li>$1,500–$2,200 MXN</li>
+            <li>En Control Vehicular del estado</li>
+          </ul>
+          <a href="/cambio-propietario/" class="btn btn-secondary">Ver pasos</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-header">
+            <i class="fa-solid fa-motorcycle"></i>
+            <h3>REPUVE Motocicletas</h3>
+          </div>
+          <p>Trámite específico para motos en Saltillo. Requisitos y oficinas habilitadas.</p>
+          <ul>
+            <li>Mismos costos que autos</li>
+            <li>Inscripción obligatoria</li>
+            <li>Chip para parabrisas/manubrio</li>
+          </ul>
+          <a href="/repuve-motos/" class="btn btn-secondary">Ver guía</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-header">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <h3>Baja vehicular</h3>
+          </div>
+          <p>Da de baja tu vehículo para liberar obligaciones fiscales y legales.</p>
+          <ul>
+            <li>$250–$400 MXN</li>
+            <li>Por robo, siniestro o desuso</li>
+            <li>Trámite mismo día</li>
+          </ul>
+          <a href="/baja-vehicular/" class="btn btn-secondary">Ver detalles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA + CONTACTO (oficina principal Saltillo) -->
+  <section class="section section-bg-alt">
+    <div class="container">
+      <h2 class="section-title">Oficina Principal REPUVE Saltillo</h2>
+      <p class="section-subtitle">Ubicación de la sede central en la capital del estado.</p>
+
+      <div class="map-contact-grid">
+        <div>
+          <div class="map-wrapper">
+            <iframe
+              src={`https://www.google.com/maps?q=${capital.latitude},${capital.longitude}&z=15&output=embed`}
+              title={`Mapa de ${capital.ciudad}`}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="map-address">
+            <p><i class="fa-solid fa-location-dot"></i> <strong>{capital.direccion}</strong></p>
+            <p style="margin-top:0.5rem;color:var(--color-text-muted);font-size:0.9rem">
+              Lunes a viernes de 08:00 a 17:00. Sábado y domingo cerrado.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-buttons">
+          <h3>Contacto rápido</h3>
+          <a href={`tel:${site.phone_repuve.replace(/\s/g,'')}`} class="cta-button">
+            <i class="fa-solid fa-phone"></i> {site.phone_repuve}
+          </a>
+          <a href="/agendar-cita/" class="cta-button">
+            <i class="fa-solid fa-calendar-check"></i> Agendar cita
+          </a>
+          <a href="/consulta-ciudadana/" class="cta-button">
+            <i class="fa-solid fa-magnifying-glass"></i> Consulta gratis
+          </a>
+          <a href={`/oficinas/${capital.slug}/`} class="cta-button">
+            <i class="fa-solid fa-building"></i> Ver más sobre esta oficina
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (4 razones) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">¿Por qué usar el REPUVE?</h2>
+      <p class="section-subtitle">El Registro Público Vehicular protege tu patrimonio y combate el robo de vehículos en México.</p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Seguridad jurídica</h3>
+          <p>Verifica la legalidad de cualquier vehículo antes de comprarlo. Evita estafas y autos robados.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <h3>Historial completo</h3>
+          <p>Consulta el estatus legal, reportes de robo y recuperaciones del vehículo de tu interés.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-gauge-high"></i>
+          <h3>Consulta inmediata</h3>
+          <p>Sistema online disponible 24/7. Resultados al instante ingresando placa o NIV.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+          <h3>100% gratuito</h3>
+          <p>La consulta ciudadana del REPUVE no tiene costo. Solo el trámite presencial de inscripción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-bg-alt">
+    <div class="container container-narrow">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <p class="section-subtitle">Dudas comunes sobre el REPUVE en Saltillo.</p>
+
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p class="faq-answer">{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p style="text-align:center;margin-top:2rem">
+        <a href="/preguntas-frecuentes/" class="btn btn-primary">Ver todas las preguntas frecuentes</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Verifica tu vehículo ahora mismo</h2>
+      <p>La consulta ciudadana es gratuita y toma menos de 2 minutos. Ingresa el número de placa o NIV.</p>
+      <a href="/consulta-ciudadana/" class="btn btn-white btn-large">
+        <i class="fa-solid fa-magnifying-glass"></i> Consultar REPUVE gratis
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Lanzador de consulta del home (distribuye tráfico, no procesa) */
+  .consulta-launcher {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7) var(--space-6);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .consulta-launcher-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .consulta-launcher-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: #d4edda;
+    color: #155724;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-4);
+  }
+
+  .consulta-launcher-title {
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 1.95rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .consulta-launcher-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin: 0;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .consulta-launcher-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .consulta-launcher-option {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--color-bg-alt);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+  }
+
+  .consulta-launcher-option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    color: var(--color-text);
+  }
+
+  .option-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .consulta-launcher-option:hover .option-icon {
+    transform: scale(1.08);
+  }
+
+  .option-body {
+    flex: 1;
+  }
+
+  .option-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+    font-weight: 500;
+  }
+
+  .option-title strong {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .option-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+    line-height: 1.5;
+  }
+
+  .option-cta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: gap 0.2s ease;
+  }
+
+  .consulta-launcher-option:hover .option-cta {
+    gap: var(--space-3);
+  }
+
+  .consulta-launcher-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .consulta-launcher-features span {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .consulta-launcher-features i {
+    color: var(--color-success);
+  }
+
+  .consulta-launcher-help {
+    text-align: center;
+    margin-top: var(--space-4);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .consulta-launcher-help a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 700px) {
+    .consulta-launcher {
+      padding: var(--space-5) var(--space-4);
+    }
+
+    .consulta-launcher-options {
+      grid-template-columns: 1fr;
+    }
+
+    .consulta-launcher-option {
+      padding: var(--space-4);
+    }
+  }
+</style>
