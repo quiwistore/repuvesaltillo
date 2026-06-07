@@ -218,40 +218,73 @@ const breadcrumbs = [
           </div>
         )}
 
-        <!-- DATOS CLAVE CARD (visible al inicio, mobile-friendly) -->
+        <!-- DATOS CLAVE CARD con botones explícitos + amplitud semántica (verbos variados para SEO) -->
         <div class="key-info-card">
           <h3 class="key-info-title">
-            <i class="fa-solid fa-circle-info"></i> Datos clave
+            <i class="fa-solid fa-circle-info"></i> Acciones rápidas REPUVE
           </h3>
           <div class="key-info-grid">
-            <a href={`tel:${site.phone_repuve.replace(/\s/g,'')}`} class="key-info-item">
-              <i class="fa-solid fa-phone"></i>
-              <div>
-                <div class="key-info-label">Línea REPUVE</div>
+
+            {/* CARD 1: Llamada telefónica directa */}
+            <a href={`tel:${site.phone_repuve.replace(/\s/g,'')}`} class="key-info-item" aria-label="Llamar a la línea nacional REPUVE">
+              <div class="key-info-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="key-info-content">
+                <div class="key-info-label">Línea REPUVE nacional</div>
                 <div class="key-info-value">{site.phone_repuve}</div>
+                <div class="key-info-desc">Atención gratuita 24/7</div>
               </div>
+              <span class="key-info-btn">
+                <i class="fa-solid fa-phone-volume"></i> Llamar ahora
+              </span>
             </a>
-            <a href="/agendar-cita/" class="key-info-item">
-              <i class="fa-solid fa-calendar-check"></i>
-              <div>
-                <div class="key-info-label">Agendar cita</div>
-                <div class="key-info-value">En línea, 24/7</div>
+
+            {/* CARD 2: Agendar cita (verbo: PEDIR/RESERVAR) */}
+            <a href="/agendar-cita/" class="key-info-item" aria-label="Reservar cita en línea para trámite REPUVE">
+              <div class="key-info-icon">
+                <i class="fa-solid fa-calendar-check"></i>
               </div>
+              <div class="key-info-content">
+                <div class="key-info-label">Cita previa</div>
+                <div class="key-info-value">Reserva en línea 24/7</div>
+                <div class="key-info-desc">Para trámites presenciales</div>
+              </div>
+              <span class="key-info-btn">
+                <i class="fa-solid fa-calendar-plus"></i> Pedir cita
+              </span>
             </a>
-            <a href="/oficinas/" class="key-info-item">
-              <i class="fa-solid fa-location-dot"></i>
-              <div>
+
+            {/* CARD 3: Oficinas (verbo: UBICAR/VER) */}
+            <a href="/oficinas/" class="key-info-item" aria-label="Ver oficinas REPUVE en Saltillo, Coahuila">
+              <div class="key-info-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="key-info-content">
                 <div class="key-info-label">Oficinas en Saltillo</div>
-                <div class="key-info-value">7 sedes</div>
+                <div class="key-info-value">2 sucursales activas</div>
+                <div class="key-info-desc">Centro · Bv. Fundadores</div>
               </div>
+              <span class="key-info-btn">
+                <i class="fa-solid fa-map-location-dot"></i> Ver ubicaciones
+              </span>
             </a>
-            <a href="/consulta-ciudadana/" class="key-info-item">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <div>
-                <div class="key-info-label">Consulta REPUVE</div>
-                <div class="key-info-value">Gratis · Online</div>
+
+            {/* CARD 4: Consulta (verbo: VERIFICAR/CHECAR) */}
+            <a href="/consulta-ciudadana/" class="key-info-item" aria-label="Verificar vehículo en el REPUVE gratis">
+              <div class="key-info-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
               </div>
+              <div class="key-info-content">
+                <div class="key-info-label">Verificación gratuita</div>
+                <div class="key-info-value">Checa placa o NIV</div>
+                <div class="key-info-desc">Resultado en 2 minutos</div>
+              </div>
+              <span class="key-info-btn">
+                <i class="fa-solid fa-shield-halved"></i> Verificar vehículo
+              </span>
             </a>
+
           </div>
         </div>
 
@@ -407,7 +440,7 @@ const breadcrumbs = [
 </Base>
 
 <style>
-  /* Datos clave card (al inicio del artículo) */
+  /* ========== DATOS CLAVE CARD con botones explícitos ========== */
   .key-info-card {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, #faf6e8 100%);
     border: 1px solid var(--color-border);
@@ -418,7 +451,7 @@ const breadcrumbs = [
 
   .key-info-title {
     color: var(--color-primary);
-    font-size: 1rem;
+    font-size: 1.05rem;
     margin-bottom: var(--space-4);
     display: flex;
     align-items: center;
@@ -431,50 +464,122 @@ const breadcrumbs = [
 
   .key-info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--space-3);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
   }
 
+  /* Cada item es ahora una tarjeta-botón completa */
   .key-info-item {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
-    padding: var(--space-3);
+    padding: var(--space-4);
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
     text-decoration: none;
     color: var(--color-text);
-    transition: all 0.18s ease;
+    transition: all 0.2s ease;
+    position: relative;
   }
 
   .key-info-item:hover {
     border-color: var(--color-primary);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(185, 28, 28, 0.12);
     color: var(--color-text);
   }
 
-  .key-info-item i {
-    color: var(--color-accent);
+  .key-info-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.1rem;
-    flex-shrink: 0;
-    margin-top: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .key-info-item:hover .key-info-icon {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .key-info-content {
+    flex: 1;
+    width: 100%;
   }
 
   .key-info-label {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     color: var(--color-text-soft);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 2px;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
   }
 
   .key-info-value {
-    font-size: 0.92rem;
+    font-size: 0.98rem;
     color: var(--color-text);
     font-weight: 600;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .key-info-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Botón CTA explícito al pie de cada tarjeta */
+  .key-info-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-top: auto;
+    transition: all 0.18s ease;
+    box-shadow: 0 2px 0 var(--color-primary-dark);
+  }
+
+  .key-info-btn i {
+    font-size: 0.78rem;
+  }
+
+  .key-info-item:hover .key-info-btn {
+    background: var(--color-primary-dark);
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 var(--color-primary-dark);
+  }
+
+  @media (max-width: 600px) {
+    .key-info-grid {
+      grid-template-columns: 1fr;
+    }
+    .key-info-item {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .key-info-content {
+      flex: 1;
+      width: auto;
+    }
+    .key-info-btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: var(--space-2);
+    }
   }
 
   /* CTA intermedio (entre sections) */

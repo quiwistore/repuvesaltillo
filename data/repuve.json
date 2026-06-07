@@ -15,35 +15,35 @@
   },
   "oficinas": [
     {
-      "slug": "saltillo-satelite",
+      "slug": "centro-recaudacion-saltillo",
       "ciudad": "Saltillo",
-      "ciudad_completa": "Saltillo (Satélite Norte)",
+      "ciudad_completa": "Saltillo (Centro de Recaudación)",
       "poblacion": "920,000",
       "es_capital": true,
       "es_frontera": false,
-      "intro": "La oficina principal del REPUVE en Saltillo, capital de Coahuila, ubicada sobre la Carretera a Torreón Km. 25 en la Colonia Ciudad Satélite Norte. Es la sede con mayor capacidad de atención en la ciudad y atiende también a la zona metropolitana (Ramos Arizpe, Arteaga). Aquí se gestionan consultas ciudadanas, inscripciones, cambios de propietario, reposiciones de placas y constancias de no robo. Por su cercanía al cluster automotriz Chrysler-Stellantis y General Motors, recibe gran volumen de trámites vehiculares cada mes.",
-      "direccion": "Carretera a Torreón Km. 25, Col. Ciudad Satélite Norte, 25140 Saltillo, Coah., México",
-      "direccion_corta": "Carretera a Torreón Km. 25, Cd. Satélite Norte",
-      "cp": "25140",
+      "intro": "El Centro de Recaudación Saltillo es la oficina de la Secretaría de Finanzas de Coahuila donde se procesan los <strong>pagos de todos los trámites vehiculares</strong>: alta y reposición de placas, refrendo anual, baja vehicular, multas, traslado de dominio y la regularización de autos chocolate. Es el lugar al que más acuden los saltillenses cuando necesitan resolver cualquier tema relacionado con su vehículo en Coahuila. Se ubica en la zona céntrica-sur de Saltillo, con acceso rápido desde Bv. Venustiano Carranza y avenidas principales. Atiende a residentes de Saltillo, Ramos Arizpe, Arteaga y General Cepeda.",
+      "direccion": "Bv. Venustiano Carranza s/n, Centro, 25000 Saltillo, Coah., México",
+      "direccion_corta": "Bv. Venustiano Carranza, Centro Saltillo",
+      "cp": "25000",
       "telefono": "844 698 1700",
       "horario": {
-        "lunes": "08:00-17:30",
-        "martes": "08:00-17:30",
-        "miercoles": "08:00-17:30",
-        "jueves": "08:00-17:30",
-        "viernes": "08:00-17:30",
-        "sabado": "08:00-13:00",
+        "lunes": "08:30-15:30",
+        "martes": "08:30-15:30",
+        "miercoles": "08:30-15:30",
+        "jueves": "08:30-15:30",
+        "viernes": "08:30-15:30",
+        "sabado": "Cerrado",
         "domingo": "Cerrado"
       },
-      "latitude": 25.4691,
-      "longitude": -100.9844,
+      "latitude": 25.3904036,
+      "longitude": -101.01727951284181,
       "servicios": [
-        "Consulta ciudadana REPUVE",
-        "Inscripción de vehículos",
-        "Cambio de propietario",
-        "Reposición de placas",
-        "Constancia de no robo",
-        "Verificación de NIV"
+        "Pago de refrendo vehicular",
+        "Alta y reposición de placas",
+        "Baja vehicular",
+        "Pago de multas y adeudos",
+        "Pago de regularización ($2,500)",
+        "Traslado de dominio (cambio de propietario)"
       ],
       "ciudades_cercanas": [
         "Ramos Arizpe",
@@ -51,44 +51,45 @@
         "General Cepeda",
         "Parras de la Fuente"
       ],
-      "gmaps_embed_pb": "!1m18!1m12!1m3!1d3596.0!2d-100.9844!3d25.4691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zU2FsdGlsbG8sIENvYWh1aWxh!5e0!3m2!1ses!2smx!4v1!5m2!1ses!2smx"
+      "gmaps_embed_pb": "!1m18!1m12!1m3!1d14061.03273081446!2d-101.01727951284181!3d25.3904036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868873b6a31d6afd%3A0xf461326a03d6c891!2sCentro%20de%20recaudaci%C3%B3n%20Saltillo!5e1!3m2!1ses-419!2sar!4v1780857739003!5m2!1ses-419!2sar"
     },
     {
-      "slug": "saltillo-oscar-flores",
+      "slug": "registro-estatal-tramites",
       "ciudad": "Saltillo",
-      "ciudad_completa": "Saltillo (Lib. Óscar Flores Tapia)",
+      "ciudad_completa": "Saltillo (Registro Estatal de Trámites)",
       "poblacion": "920,000",
       "es_capital": false,
       "es_frontera": false,
-      "intro": "Segunda oficina REPUVE en Saltillo, ubicada sobre el Libramiento Óscar Flores Tapia, Km 1.5, en la Colonia 5 de Mayo. Atiende al sur y centro-sur de la ciudad (zonas Universidad, República, Topo Chico) y suele tener menor saturación que la oficina de Satélite Norte. Es buena opción para cambios de propietario, bajas vehiculares y trámites de motocicletas. Acceso por el libramiento, con estacionamiento en sitio y cercanía a la zona universitaria.",
-      "direccion": "Km 1.5, Libramiento Óscar Flores Tapia, Col. 5 de Mayo, 25016 Saltillo, Coah., México",
-      "direccion_corta": "Km 1.5 Lib. Óscar Flores Tapia, 5 de Mayo",
-      "cp": "25016",
+      "intro": "El Registro Estatal de Trámites y Servicios de Coahuila es la oficina donde se <strong>procesan los trámites vehiculares</strong> después del pago en Recaudación. Aquí se gestionan los cambios de propietario, las inscripciones al REPUVE de vehículos usados, las constancias de no robo y las bajas vehiculares por robo o siniestro. También es la sede para citas de trámites complejos que requieren verificación documental. Está al sur-oriente de Saltillo, con buen acceso por Bv. Fundadores y zonas universitarias.",
+      "direccion": "Bv. Fundadores, Saltillo, Coah., México",
+      "direccion_corta": "Bv. Fundadores, Saltillo",
+      "cp": "25280",
       "telefono": "844 698 1700",
       "horario": {
-        "lunes": "08:30-16:00",
-        "martes": "08:30-16:00",
-        "miercoles": "08:30-16:00",
-        "jueves": "08:30-16:00",
-        "viernes": "08:30-16:00",
+        "lunes": "09:00-15:00",
+        "martes": "09:00-15:00",
+        "miercoles": "09:00-15:00",
+        "jueves": "09:00-15:00",
+        "viernes": "09:00-15:00",
         "sabado": "Cerrado",
         "domingo": "Cerrado"
       },
-      "latitude": 25.4232,
-      "longitude": -101.0049,
+      "latitude": 25.41598179999999,
+      "longitude": -100.99363121284183,
       "servicios": [
-        "Consulta ciudadana REPUVE",
-        "Cambio de propietario",
-        "Bajas vehiculares",
-        "Trámites de motos",
-        "Constancia de no robo"
+        "Cambio de propietario / traslado de dominio",
+        "Inscripción al REPUVE",
+        "Constancia de no robo",
+        "Baja vehicular por robo o siniestro",
+        "Verificación de NIV",
+        "Cita previa para trámites complejos"
       ],
       "ciudades_cercanas": [
         "Ramos Arizpe",
         "Arteaga",
         "General Cepeda"
       ],
-      "gmaps_embed_pb": "!1m18!1m12!1m3!1d3596.0!2d-101.0049!3d25.4232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zU2FsdGlsbG8sIENvYWh1aWxh!5e0!3m2!1ses!2smx!4v1!5m2!1ses!2smx"
+      "gmaps_embed_pb": "!1m18!1m12!1m3!1d14058.05199398256!2d-100.99363121284183!3d25.41598179999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86880dc6c79aad03%3A0xab4a12eb59aad329!2sRegistro%20Estatal%20de%20Tr%C3%A1mites%20y%20Servicios%2C%20Coahuila!5e1!3m2!1ses-419!2sar!4v1780857723388!5m2!1ses-419!2sar"
     }
   ],
   "meta": {
@@ -970,7 +971,7 @@
             "<strong>Sábados:</strong> Cerrado",
             "<strong>Domingos:</strong> Cerrado",
             "Dirección: Carretera a Torreón Km. 25, Cd. Satélite Norte, 25140 Saltillo",
-            "Ver <a href='/oficinas/saltillo-satelite/'>oficina REPUVE Saltillo capital</a>"
+            "Ver <a href='/oficinas/centro-recaudacion-saltillo/'>oficina REPUVE Saltillo capital</a>"
           ]
         },
         {
@@ -980,7 +981,7 @@
             "<strong>Sábados:</strong> 08:00 a 13:00 horas (algunos módulos)",
             "<strong>Domingos:</strong> Cerrado",
             "<strong>Módulos itinerantes</strong>: horarios varían según ubicación",
-            "Ver <a href='/oficinas/saltillo-satelite/'>oficinas REPUVE Saltillo capital</a>"
+            "Ver <a href='/oficinas/centro-recaudacion-saltillo/'>oficinas REPUVE Saltillo capital</a>"
           ]
         },
         {
@@ -1016,7 +1017,7 @@
         },
         {
           "q": "¿Atienden los sábados en alguna oficina de Saltillo?",
-          "a": "Solo algunos módulos en <strong>Saltillo capital</strong> atienden sábados por la mañana. El resto de oficinas del estado cierra los sábados y domingos. <a href='/oficinas/saltillo-satelite/'>Ver detalles de Saltillo capital</a>."
+          "a": "Solo algunos módulos en <strong>Saltillo capital</strong> atienden sábados por la mañana. El resto de oficinas del estado cierra los sábados y domingos. <a href='/oficinas/centro-recaudacion-saltillo/'>Ver detalles de Saltillo capital</a>."
         },
         {
           "q": "¿Cómo saber si hubo cambios de horario por contingencia?",
@@ -1102,8 +1103,8 @@
         {
           "heading": "Oficinas REPUVE en Saltillo por ciudad",
           "body": [
-            "<strong>Saltillo (Capital)</strong>: Carretera a Torreón Km. 25, Cd. Satélite Norte, 31074. <a href='/oficinas/saltillo-satelite/'>Ver detalle</a>",
-            "<strong>Saltillo capital</strong>: Bld. Oscar Flores 3920, Partido Iglesias, 32528 (más módulos). <a href='/oficinas/saltillo-satelite/'>Ver detalle</a>",
+            "<strong>Saltillo (Capital)</strong>: Carretera a Torreón Km. 25, Cd. Satélite Norte, 31074. <a href='/oficinas/centro-recaudacion-saltillo/'>Ver detalle</a>",
+            "<strong>Saltillo capital</strong>: Bld. Oscar Flores 3920, Partido Iglesias, 32528 (más módulos). <a href='/oficinas/centro-recaudacion-saltillo/'>Ver detalle</a>",
             "<strong>Ramos Arizpe</strong>: Av. 16 de Septiembre y Calle 5a Norte, Centro, 31500. <a href='/oficinas/cuauhtemoc/'>Ver detalle</a>",
             "<strong>Delicias</strong>: Av. 6a Sur y Calle Mariano Matamoros, Centro, 33000. <a href='/oficinas/delicias/'>Ver detalle</a>",
             "<strong>Arteaga</strong>: Av. Independencia 56, Centro, 33800. <a href='/oficinas/hidalgo-del-parral/'>Ver detalle</a>",
@@ -1827,8 +1828,8 @@
           "heading": "Módulos REPUVE para regularización en Saltillo",
           "body": [
             "En Coahuila hay módulos de regularización en las principales ciudades. Disponibilidad varía según el calendario federal:",
-            "<strong>Saltillo capital:</strong> Carretera a Torreón Km. 25, Cd. Satélite Norte, CP 31074. Lunes a viernes de 8:00 a 15:00. Es el módulo permanente principal. <a href='/oficinas/saltillo-satelite/'>Ver detalles</a>.",
-            "<strong>Saltillo capital:</strong> el módulo de mayor demanda. Varios sub-módulos itinerantes (El Punto, presidencia municipal, Modulo Mitla, Zaragoza, Pronaf). Horarios variables. <a href='/oficinas/saltillo-satelite/'>Ver detalles</a>.",
+            "<strong>Saltillo capital:</strong> Carretera a Torreón Km. 25, Cd. Satélite Norte, CP 31074. Lunes a viernes de 8:00 a 15:00. Es el módulo permanente principal. <a href='/oficinas/centro-recaudacion-saltillo/'>Ver detalles</a>.",
+            "<strong>Saltillo capital:</strong> el módulo de mayor demanda. Varios sub-módulos itinerantes (El Punto, presidencia municipal, Modulo Mitla, Zaragoza, Pronaf). Horarios variables. <a href='/oficinas/centro-recaudacion-saltillo/'>Ver detalles</a>.",
             "<strong>Ramos Arizpe, Delicias, Arteaga, General Cepeda, Camargo:</strong> módulos itinerantes que abren por periodos de 2-4 semanas. Verificá calendario en regularizaauto.sspc.gob.mx.",
             "<strong>Tip:</strong> en Saltillo capital los cupos se agotan en días. En módulos itinerantes de municipios chicos hay más disponibilidad. Si podés desplazarte 100-200 km, te ahorra semanas de espera."
           ]
@@ -1924,7 +1925,7 @@
           "heading": "Como obtener el chip REPUVE en Saltillo",
           "body": [
             "<strong>1.</strong> Verifica que tu vehiculo este inscrito en el REPUVE. Si no esta, primero realiza la <a href='/inscribir-vehiculo/'>inscripcion</a>.",
-            "<strong>2.</strong> Agenda cita en el modulo REPUVE mas cercano. En Saltillo: Carretera a Torreón Km. 25. En Ciudad Juarez: ver <a href='/oficinas/saltillo-satelite/'>nuestra pagina de oficinas Juarez</a>.",
+            "<strong>2.</strong> Agenda cita en el modulo REPUVE mas cercano. En Saltillo: Carretera a Torreón Km. 25. En Ciudad Juarez: ver <a href='/oficinas/centro-recaudacion-saltillo/'>nuestra pagina de oficinas Juarez</a>.",
             "<strong>3.</strong> El dia de la cita lleva: identificacion oficial, factura del vehiculo o tarjeta de circulacion, y el vehiculo fisicamente.",
             "<strong>4.</strong> El personal del REPUVE verificara el NIV, escaneara el chip nuevo y lo instalara en el parabrisas (esquina superior derecha).",
             "<strong>5.</strong> Te entregan constancia y un comprobante con el numero de chip asignado."
@@ -2011,7 +2012,7 @@
           "heading": "Oficinas de Control Vehicular Coahuila",
           "body": [
             "<strong>Saltillo capital:</strong> varias oficinas. Direccion principal: Av. Tecnologico Norte 3801, Magisterial Universidad.",
-            "<strong>Ciudad Juarez:</strong> Blvd. Oscar Flores 3920 y otros modulos. Ver <a href='/oficinas/saltillo-satelite/'>nuestra pagina de Ciudad Juarez</a>.",
+            "<strong>Ciudad Juarez:</strong> Blvd. Oscar Flores 3920 y otros modulos. Ver <a href='/oficinas/centro-recaudacion-saltillo/'>nuestra pagina de Ciudad Juarez</a>.",
             "<strong>Cuauhtemoc:</strong> oficina municipal de Control Vehicular en el centro.",
             "<strong>Otros municipios:</strong> Delicias, Parral, General Cepeda tienen oficinas locales o jornadas itinerantes."
           ]
