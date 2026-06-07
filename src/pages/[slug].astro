@@ -161,6 +161,153 @@ if (page.faqs && page.faqs.length > 0) {
   });
 }
 
+// ============================================================
+// HowTo schemas (solo en páginas que son procesos paso a paso)
+// Aunque Google retiró el rich result de HowTo en sep-2023,
+// el schema sigue siendo señal semántica fuerte para el motor.
+// ============================================================
+const HOWTO_BY_SLUG: Record<string, any> = {
+  'consulta-ciudadana': {
+    name: "Cómo consultar el REPUVE de un vehículo gratis en Saltillo",
+    description: "Verificá el estatus legal de cualquier vehículo (reporte de robo, alertas) en menos de 2 minutos, gratis, desde el portal oficial del Gobierno de México.",
+    totalTime: "PT2M",
+    estimatedCost: { currency: "MXN", value: "0" },
+    supply: ["Número de placa (5-7 caracteres)", "o NIV/VIN (17 caracteres)", "o folio de constancia"],
+    tool: ["Computadora o celular con internet", "Navegador web"],
+    steps: [
+      { name: "Ingresar al portal oficial REPUVE", text: "Andá a https://www2.repuve.gob.mx:8443/ciudadania/. Es el único sitio oficial. Cualquier sitio que cobre por la consulta es fraude." },
+      { name: "Elegir tipo de búsqueda", text: "Seleccioná entre placa, NIV (17 caracteres), folio de constancia o NCI." },
+      { name: "Ingresar el dato del vehículo", text: "Escribí el dato SIN guiones ni espacios, todo en mayúsculas. Ejemplo de placa: ABC1234." },
+      { name: "Resolver el captcha", text: "Completá el captcha que aparece. Si no se entiende, recargá la imagen." },
+      { name: "Pulsar Buscar", text: "El sistema responde en 5-60 segundos con el estatus del vehículo." },
+      { name: "Interpretar el resultado", text: "Sin reporte = limpio. Con reporte de robo = NO compres. Recuperado = verificá cadena legal. Sin información = puede no estar inscrito." }
+    ]
+  },
+  'consulta-por-placa': {
+    name: "Cómo consultar REPUVE por placa en Saltillo",
+    description: "Verificá un vehículo usando solo el número de placa. Gratis, sin registro, resultado en 2 minutos.",
+    totalTime: "PT2M",
+    estimatedCost: { currency: "MXN", value: "0" },
+    supply: ["Número de placa (5-7 caracteres alfanuméricos)"],
+    tool: ["Dispositivo con internet"],
+    steps: [
+      { name: "Abrir portal REPUVE", text: "Ingresá a https://www2.repuve.gob.mx:8443/ciudadania/" },
+      { name: "Seleccionar 'Consulta por placa'", text: "Es la primera opción del formulario, la más común." },
+      { name: "Escribir la placa", text: "Sin guiones ni espacios. Ejemplo: ABC1234 (no ABC-1234)." },
+      { name: "Resolver captcha", text: "Completá el captcha de validación." },
+      { name: "Buscar y leer resultado", text: "Te devuelve datos del vehículo y estatus: 'sin reporte', 'con reporte de robo', 'recuperado' o 'sin información'." }
+    ]
+  },
+  'consulta-por-niv': {
+    name: "Cómo consultar REPUVE por NIV (VIN) en Saltillo",
+    description: "Verificación más confiable que por placa. El NIV es único e invariable por vehículo durante toda su vida útil.",
+    totalTime: "PT3M",
+    estimatedCost: { currency: "MXN", value: "0" },
+    supply: ["NIV/VIN del vehículo (17 caracteres exactos)"],
+    tool: ["Dispositivo con internet"],
+    steps: [
+      { name: "Conseguir el NIV", text: "El NIV está en: parabrisas (esquina inferior conductor), puerta del piloto, tarjeta de circulación o factura. Son 17 caracteres alfanuméricos, sin letras I/O/Q." },
+      { name: "Ingresar al portal oficial", text: "https://www2.repuve.gob.mx:8443/ciudadania/" },
+      { name: "Seleccionar 'Consulta por NIV'", text: "En el formulario del portal." },
+      { name: "Escribir el NIV completo", text: "Todo en mayúsculas, sin guiones ni espacios. 17 caracteres exactos." },
+      { name: "Resolver captcha y buscar", text: "El sistema responde en 5-60 segundos." },
+      { name: "Verificar coincidencia", text: "Los datos devueltos (marca, modelo, año, color) deben coincidir 100% con el vehículo físico. Si no coinciden, hay fraude." }
+    ]
+  },
+  'agendar-cita': {
+    name: "Cómo agendar cita REPUVE en Saltillo",
+    description: "Reservá tu cita previa online para trámites presenciales (regularización, inscripción, cambio de propietario) en el Centro de Recaudación Saltillo o el Registro Estatal de Trámites.",
+    totalTime: "PT15M",
+    estimatedCost: { currency: "MXN", value: "0" },
+    supply: ["CURP", "Correo electrónico", "Datos del vehículo (NIV, marca, modelo)", "Identificación oficial"],
+    tool: ["Computadora o celular con internet", "Acceso a banco (para pagar línea de captura si aplica)"],
+    steps: [
+      { name: "Acceder a la plataforma oficial", text: "Para regularización: https://regularizaauto.sspc.gob.mx. Para otros trámites: llamar al 800 737 8831 o acudir directamente." },
+      { name: "Crear cuenta o iniciar sesión", text: "Registrate con CURP, correo y teléfono." },
+      { name: "Cargar datos del vehículo", text: "NIV de 17 caracteres, marca, modelo, año, color, placas (si tiene)." },
+      { name: "Generar línea de captura", text: "Si aplica costo (ej: $2,500 MXN para regularización), el sistema genera una referencia bancaria." },
+      { name: "Pagar en banco autorizado", text: "HSBC, Banamex, Banorte, BBVA, Santander o Scotiabank. Conservar comprobante." },
+      { name: "Seleccionar módulo y fecha", text: "Elegí Centro de Recaudación Saltillo o Registro Estatal de Trámites, y la fecha/hora disponible." },
+      { name: "Confirmar e imprimir", text: "Recibís correo de confirmación. Imprimí el comprobante o guardalo en celular para el día de la cita." }
+    ]
+  },
+  'regularizacion-autos-chocolate': {
+    name: "Cómo regularizar un auto chocolate en Saltillo, Coahuila",
+    description: "Legalizá tu vehículo de procedencia extranjera ingresado antes del 19-oct-2021 bajo el Decreto Federal de Regularización. Costo único: $2,500 MXN. Resultado: chip REPUVE + posibilidad de emplacar en Coahuila.",
+    totalTime: "P30D",
+    estimatedCost: { currency: "MXN", value: "2500" },
+    supply: [
+      "Título original del país de origen (Title EE.UU.)",
+      "INE vigente del propietario",
+      "CURP",
+      "Comprobante de domicilio reciente (≤3 meses)",
+      "Manifiesto firmado en tinta azul",
+      "2 fotografías del vehículo (parabrisas con NIV + puerta piloto)"
+    ],
+    tool: ["Vehículo físico para inspección", "Banco autorizado para pago", "Plataforma regularizaauto.sspc.gob.mx"],
+    steps: [
+      { name: "Verificar elegibilidad", text: "Tu auto debe haber ingresado al país antes del 19 de octubre de 2021 y tener Title original. Sin Title no podés regularizar." },
+      { name: "Crear cuenta en plataforma federal", text: "Andá a regularizaauto.sspc.gob.mx y registrate con CURP, correo y teléfono." },
+      { name: "Llenar formulario con datos del vehículo", text: "NIV (17 caracteres), marca, modelo, año, color, número de motor. Cuidadosamente — el NIV debe coincidir con el grabado en el vehículo." },
+      { name: "Generar y pagar línea de captura", text: "$2,500 MXN en banco autorizado (HSBC, Banamex, Banorte, BBVA, Santander, Scotiabank). Conservar comprobante con sello." },
+      { name: "Agendar cita en módulo", text: "Elegir el módulo en Saltillo (Centro de Recaudación) o cualquier otro de Coahuila. Imprimir comprobante." },
+      { name: "Acudir el día de la cita con todo", text: "Llegar 30 min antes con: documentos completos, comprobante de pago, manifiesto firmado, 2 fotos, vehículo físico. El módulo: verifica NIV → cobra (si no pagaste antes) → instala chip RFID → emite constancia." },
+      { name: "Tramitar placas estatales", text: "Con la constancia REPUVE, acudir a Control Vehicular de Coahuila para emplacar (~$2,000 MXN adicionales). Pagar refrendo anual del año en curso." }
+    ]
+  },
+  'cambio-propietario': {
+    name: "Cómo hacer cambio de propietario vehicular en Saltillo",
+    description: "Transferí legalmente un vehículo usado a tu nombre dentro de los 30 días posteriores a la compraventa. Trámite obligatorio en Coahuila.",
+    totalTime: "PT2H",
+    estimatedCost: { currency: "MXN", value: "1800" },
+    supply: [
+      "Factura original con endoso completo del vendedor",
+      "Tarjeta de circulación vigente",
+      "Constancia REPUVE actualizada",
+      "INE vigente (comprador y vendedor)",
+      "CURP del comprador",
+      "Comprobante de domicilio en Coahuila",
+      "Refrendo y multas al corriente"
+    ],
+    tool: ["Vehículo físico", "Banco para pago de derechos"],
+    steps: [
+      { name: "Verificar el REPUVE antes de comprar", text: "Hacer consulta ciudadana por NIV y placa. Asegurarse de que no tiene reporte de robo ni alertas." },
+      { name: "Verificar adeudos del vehículo", text: "Confirmar que el vendedor está al corriente con refrendo y multas. Si hay adeudos pendientes, el comprador los hereda." },
+      { name: "Firmar la factura con endoso", text: "El vendedor firma el reverso de la factura indicando: nombre del comprador, fecha y firma. Sin este endoso no se puede hacer el cambio." },
+      { name: "Reunir documentación", text: "INE del comprador y vendedor, CURP, comprobante de domicilio, factura endosada, tarjeta de circulación, constancia REPUVE." },
+      { name: "Acudir al Registro Estatal de Trámites", text: "Saltillo (Bv. Fundadores). No requiere cita previa en la mayoría de casos. Llevar el vehículo físicamente." },
+      { name: "Pagar derechos de cambio de propietario", text: "Aproximadamente $1,500-$2,200 MXN según modelo y año del vehículo." },
+      { name: "Recibir nuevos documentos", text: "Te entregan nueva tarjeta de circulación a tu nombre y, según el caso, placas nuevas o las mismas." }
+    ]
+  }
+};
+
+const howtoConfig = HOWTO_BY_SLUG[page.slug];
+if (howtoConfig) {
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": howtoConfig.name,
+    "description": howtoConfig.description,
+    "totalTime": howtoConfig.totalTime,
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": howtoConfig.estimatedCost.currency,
+      "value": howtoConfig.estimatedCost.value
+    },
+    "supply": howtoConfig.supply.map((s: string) => ({ "@type": "HowToSupply", "name": s })),
+    "tool": howtoConfig.tool.map((t: string) => ({ "@type": "HowToTool", "name": t })),
+    "step": howtoConfig.steps.map((s: any, i: number) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": s.name,
+      "text": s.text,
+      "url": `https://${site.domain}/${page.slug}/#paso-${i + 1}`
+    })),
+    "inLanguage": "es-MX"
+  });
+}
+
 // WebPage / Article schema
 schemas.push({
   "@context": "https://schema.org",
