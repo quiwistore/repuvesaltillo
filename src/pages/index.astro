@@ -13,13 +13,17 @@ const orgSchema = {
   "url": `https://${site.domain}`,
   "telephone": site.phone_repuve,
   "areaServed": {
-    "@type": "State",
+    "@type": "City",
     "name": "Saltillo",
-    "containedInPlace": { "@type": "Country", "name": "México" }
+    "containedInPlace": {
+      "@type": "State",
+      "name": "Coahuila",
+      "containedInPlace": { "@type": "Country", "name": "México" }
+    }
   }
 };
 
-// ItemList schema con las oficinas
+// ItemList schema con las oficinas (enriquecido con address y geo para local SEO)
 const officesListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -27,18 +31,35 @@ const officesListSchema = {
   "itemListElement": oficinas.map((o, i) => ({
     "@type": "ListItem",
     "position": i + 1,
-    "name": `REPUVE ${o.ciudad}`,
-    "url": `https://${site.domain}/oficinas/${o.slug}/`
+    "item": {
+      "@type": "GovernmentOffice",
+      "name": `REPUVE ${o.ciudad_completa}`,
+      "url": `https://${site.domain}/oficinas/${o.slug}/`,
+      "telephone": o.telefono,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": o.direccion_corta,
+        "addressLocality": o.ciudad,
+        "addressRegion": "Coahuila",
+        "postalCode": o.cp,
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": o.latitude,
+        "longitude": o.longitude
+      }
+    }
   }))
 };
 
-// FAQs de home
+// FAQs de home (direcciones reales actualizadas)
 const faqs = [
   { q: "¿Cómo consulto el REPUVE en Saltillo gratis?", a: "Puedes consultar el REPUVE gratis en línea ingresando el número de placa o NIV en el portal oficial repuve.gob.mx, o llamando al 800 737 8831. La consulta es 100% gratuita y disponible las 24 horas." },
-  { q: "¿Dónde están las oficinas REPUVE en Saltillo?", a: "Hay oficinas en Saltillo (Carretera a Torreón Km. 25), Saltillo (Lib. Óscar Flores Tapia Km 1.5), Ramos Arizpe, Arteaga y General Cepeda. Consulta horarios y ubicaciones específicas." },
-  { q: "¿El REPUVE es obligatorio para autos y motos en Saltillo?", a: "Sí, la inscripción en el REPUVE es obligatoria para todos los vehículos automotores que circulan en México, incluyendo Saltillo, según la Ley del Registro Público Vehicular." },
-  { q: "¿Cuánto cuesta inscribir mi auto en el REPUVE Saltillo?", a: "La inscripción al REPUVE es gratuita. Los costos relacionados son de Control Vehicular del estado (placas, refrendo, tenencia). La regularización de autos chocolate cuesta $2,500 MXN." },
-  { q: "¿Cómo agendo una cita en el REPUVE Saltillo?", a: "Puedes agendar tu cita en línea en regularizaauto.sspc.gob.mx (para regularización) o directamente en la oficina REPUVE de tu localidad. También puedes llamar al 800 737 8831." }
+  { q: "¿Dónde están las oficinas REPUVE en Saltillo?", a: "Saltillo cuenta con 2 sedes para trámites vehiculares: el Centro de Recaudación Saltillo (Bv. Venustiano Carranza, Centro), donde se pagan refrendos, multas, alta de placas y la regularización de autos chocolate; y el Registro Estatal de Trámites y Servicios (Bv. Fundadores), donde se procesan cambios de propietario, inscripciones al REPUVE y bajas vehiculares." },
+  { q: "¿El REPUVE es obligatorio para autos y motos en Saltillo?", a: "Sí, la inscripción en el REPUVE es obligatoria para todos los vehículos automotores que circulan en México, incluyendo Saltillo y todo Coahuila, según la Ley del Registro Público Vehicular." },
+  { q: "¿Cuánto cuesta inscribir mi auto en el REPUVE en Saltillo?", a: "La inscripción al REPUVE es gratuita. Los costos relacionados son de Control Vehicular del estado de Coahuila (placas, refrendo, tenencia). La regularización de autos chocolate cuesta $2,500 MXN, pago realizado en el Centro de Recaudación Saltillo." },
+  { q: "¿Cómo agendo una cita en el REPUVE de Saltillo?", a: "Puedes agendar tu cita en línea en regularizaauto.sspc.gob.mx (para regularización) o directamente en el Registro Estatal de Trámites y Servicios de Coahuila. También puedes llamar al 800 737 8831." }
 ];
 
 const faqSchema = {

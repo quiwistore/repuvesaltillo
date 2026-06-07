@@ -41,7 +41,7 @@ const officeSchema = {
     "@type": "PostalAddress",
     "streetAddress": oficina.direccion_corta,
     "addressLocality": oficina.ciudad,
-    "addressRegion": "Saltillo",
+    "addressRegion": "Coahuila",
     "postalCode": oficina.cp,
     "addressCountry": "MX"
   },
@@ -57,10 +57,39 @@ const officeSchema = {
     "url": "https://www.repuve.gob.mx"
   },
   "hasMap": `https://www.google.com/maps?q=${oficina.latitude},${oficina.longitude}`,
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": `${oficina.ciudad} y municipios aledaños`
-  }
+  "sameAs": [
+    `https://www.google.com/maps?q=${oficina.latitude},${oficina.longitude}`
+  ],
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Saltillo",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Coahuila",
+        "containedInPlace": { "@type": "Country", "name": "México" }
+      }
+    },
+    ...(oficina.ciudades_cercanas || []).map(c => ({
+      "@type": "City",
+      "name": c,
+      "containedInPlace": { "@type": "State", "name": "Coahuila" }
+    }))
+  ],
+  "paymentAccepted": "Efectivo, Tarjeta de débito, Tarjeta de crédito, Transferencia SPEI, Línea de captura bancaria",
+  "currenciesAccepted": "MXN",
+  "knowsLanguage": ["es-MX", "Spanish"],
+  "makesOffer": (oficina.servicios || []).map(s => ({
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": s,
+      "provider": {
+        "@type": "GovernmentOrganization",
+        "name": "REPUVE"
+      }
+    }
+  }))
 };
 
 const breadcrumbs = [
@@ -70,7 +99,7 @@ const breadcrumbs = [
 ];
 
 const title = `REPUVE ${oficina.ciudad_completa}: Dirección, Horarios, Teléfono y Trámites`;
-const description = `Oficina REPUVE en ${oficina.ciudad}, Saltillo. Dirección: ${oficina.direccion_corta}. Teléfono ${oficina.telefono}. Horarios, requisitos y trámites disponibles. Cómo agendar cita.`;
+const description = `Oficina REPUVE en ${oficina.ciudad}, Coahuila. Dirección: ${oficina.direccion_corta}. Teléfono ${oficina.telefono}. Horarios, requisitos y trámites disponibles. Cómo agendar cita.`;
 ---
 
 <Base title={title} description={description} schema={officeSchema}>
