@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { site } from '../data/datos.js';
+import L from '../data/legal.json';
+import LS from '../data/contacto.json';
 
 const breadcrumbs = [
   { label: 'Inicio', href: '/' },
@@ -23,6 +25,8 @@ const breadcrumbs = [
     </header>
 
     <article class="article-main">
+      <h2>Escribir a este sitio</h2>
+      <Fragment set:html={L['contact'].html.replaceAll('{{EMAIL}}', LS.email)} />
       <div class="warning-box">
         <p>
           <i class="fa-solid fa-triangle-exclamation"></i>

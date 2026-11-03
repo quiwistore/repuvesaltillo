@@ -1,0 +1,32 @@
+---
+// generado por herramientas-investigacion/legales
+import L from '../data/legal.json';
+import LS from '../data/contacto.json';
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../data/datos.js';
+
+const breadcrumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Términos de uso' }
+];
+---
+
+<Base
+  title="Términos de uso"
+  description="Términos de uso de REPUVE Saltillo, sitio independiente y no oficial sobre el REPUVE en Saltillo (Coahuila)."
+>
+  <div class="container container-narrow">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <header class="page-header">
+      <div class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Legal</div>
+      <h1>Términos de uso</h1>
+      <p class="lede">Términos de uso de REPUVE Saltillo, sitio independiente y no oficial sobre el REPUVE en Saltillo (Coahuila).</p>
+    </header>
+
+    <article class="article-main">
+<Fragment set:html={L['terms'].html.replaceAll('{{EMAIL}}', LS.email)} />
+</article>
+  </div>
+</Base>
